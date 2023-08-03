@@ -4,16 +4,17 @@ import models.enums.FeesCalculationStrategyType;
 import models.enums.GateType;
 
 public class Gate extends BaseClass {
-    private int gateNumber;
+    private Long gateNumber;
     private GateType gateType;
     private Operator operator;
     private FeesCalculationStrategyType feesCalculationStrategyType;
+    private Long parkingLotNumber;
 
-    public int getGateNumber() {
+    public Long getGateNumber() {
         return gateNumber;
     }
 
-    public void setGateNumber(int gateNumber) {
+    public void setGateNumber(Long gateNumber) {
         this.gateNumber = gateNumber;
     }
 

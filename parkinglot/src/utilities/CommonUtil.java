@@ -1,5 +1,6 @@
 package utilities;
 
+import models.enums.GateType;
 import models.enums.VechileType;
 
 import java.util.List;
@@ -48,6 +49,18 @@ public class CommonUtil {
     public static Long getParkingLotNumber(){
         parkingLotNumber = parkingLotNumber+1;
         return parkingLotNumber;
+    }
+
+    public String generateFloorKey(Long parkingLotNumber,Long floorNumber){
+        return parkingLotNumber+"_"+floorNumber;
+    }
+
+    public String generateParkingSpotKey(Long parkingLotNumber,Long floorNumber,Long parkingSpotNumber){
+        return parkingLotNumber+"_"+floorNumber+"_"+parkingSpotNumber;
+    }
+
+    public String generateGateKey(Long parkingLotNumber, Long gateNumber, GateType gateType){
+        return parkingLotNumber+"_"+gateNumber+"_"+gateType.toString();
     }
 
 }

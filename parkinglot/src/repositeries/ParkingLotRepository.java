@@ -4,6 +4,7 @@ import models.Gate;
 import models.ParkingLot;
 
 import javax.swing.text.html.Option;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -20,8 +21,9 @@ public class ParkingLotRepository {
     public ParkingLot saveParkingLotInfo(ParkingLot parkingLot) {
         id = id + 1;
         parkingLot.setId(id);
+        parkingLot.setCreatedAt(new Date());
+        parkingLot.setUpdatedAt(new Date());
         return parkingLotInMemoryDb.put(parkingLot.getNumber(), parkingLot);
-
     }
 
     public Optional<ParkingLot> getParkingLotInfo(Long parkingLotId) {

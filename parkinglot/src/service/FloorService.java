@@ -1,47 +1,37 @@
 package service;
 
 import models.Floor;
+import models.ParkingLot;
 import models.ParkingSpot;
 import models.enums.ParkingSpotStatus;
 import models.enums.VechileType;
+import repositeries.FloorRepository;
 import repositeries.ParkingSpotRepository;
 import utilities.CommonUtil;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class FloorService {
-
     CommonUtil commonUtil;
+    ParkingSpotService parkingSpotService;
 
-    ParkingSpotRepository parkingSpotRepository;
+    FloorRepository floorRepository;
 
-    public FloorService(CommonUtil commonUtil,ParkingSpotRepository parkingSpotRepository){
+    public FloorService(CommonUtil commonUtil, ParkingSpotService parkingSpotService, FloorRepository floorRepository) {
         this.commonUtil = commonUtil;
-        this.parkingSpotRepository = parkingSpotRepository;
+        this.parkingSpotService = parkingSpotService;
+        this.floorRepository = floorRepository;
     }
 
-    public List<Floor> floorLinkToParkingLot(Long parkingLotNumber, int numberOfFloors, List<VechileType> allowedVehicleType) {
+    public List<Floor> floorLinkToParkingLot(ParkingLot parkingLot, int numberOfFloors, List<VechileType> allowedVehicleType) {
         List<Floor> floors = new ArrayList<>();
         for (int i = 0; i < numberOfFloors; i++) {
             Floor floor = new Floor();
             floor.setFloorNumber(Long.valueOf(i));
             floor.setId(commonUtil.generateRandomNumber());
-            floor.setParkingLotId(parkingLotNumber);
-            List<ParkingSpot> parkingSpots = new ArrayList<>();
-            for (int j = 0; j < 30; j++) {
-                ParkingSpot parkingSpot = new ParkingSpot();
-                parkingSpot.setParkingSpotStatus(ParkingSpotStatus.EMPTY);
-                parkingSpot.setSpotNumber(j);
-                parkingSpot.setId(commonUtil.generateRandomNumber());
-                parkingSpot.setVechileType(CommonUtil.getRandomFromListEnum(allowedVehicleType));
-                parkingSpot.setFloor(floor);
-                parkingSpot.setCreatedAt(new Date());
-                parkingSpot.setUpdatedAt(new Date());
-                parkingSpots.add(parkingSpot);
-            }
-            floor.setParkingSpotList(parkingSpots);
+            floor.setParkingLot(parkingLot);
+            floor.setParkingSpotList(parkingSpotService.createParkingSpotsForFloor(allowedVehicleType, floor.getFloorNumber(), floor.getParkingLot().getNumber()));
+           floors.add(floorRepository.saveFloorForParkingLot(floor));
         }
         return floors;
     }

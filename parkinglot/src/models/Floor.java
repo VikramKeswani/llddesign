@@ -5,7 +5,8 @@ import java.util.List;
 public class Floor extends BaseClass {
     private Long floorNumber;
     private List<ParkingSpot> parkingSpotList;
-    private Long parkingLotId;
+    private ParkingLot parkingLot;
+
 
     public Long getFloorNumber() {
         return floorNumber;
@@ -23,11 +24,11 @@ public class Floor extends BaseClass {
         this.parkingSpotList = parkingSpotList;
     }
 
-    public Long getParkingLotId() {
-        return parkingLotId;
+    public ParkingLot getParkingLot() {
+        return parkingLot;
     }
 
-    public void setParkingLotId(Long parkingLotId) {
-        this.parkingLotId = parkingLotId;
+    public void setParkingLot(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
     }
 }

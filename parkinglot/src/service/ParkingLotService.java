@@ -17,14 +17,14 @@ import java.util.Random;
 
 public class ParkingLotService {
     ParkingLotRepository parkingLotRepository;
-    GateRepository gateRepository;
+    GateService gateService;
     CommonUtil commonUtil;
     FloorService floorService;
 
 
-    public ParkingLotService(ParkingLotRepository parkingLotRepository, GateRepository gateRepository,FloorService floorService) {
+    public ParkingLotService(ParkingLotRepository parkingLotRepository, GateService gateService, FloorService floorService) {
         this.parkingLotRepository = parkingLotRepository;
-        this.gateRepository = gateRepository;
+        this.gateService = gateService;
         commonUtil = CommonUtil.getInstance();
         this.floorService = floorService;
     }
@@ -34,16 +34,8 @@ public class ParkingLotService {
         parkingLot.setParkingLotStatus(ParkingLotStatus.OPEN);
         parkingLot.setNumber(commonUtil.getParkingLotNumber());
         parkingLot.setSpotFindingStrategyType(SpotFindingStrategyType.SEQUENTIAL);
-        parkingLot.setFloor(floorService.floorLinkToParkingLot(parkingLot.getNumber(),numberOfFloors,allowedVehicleType));
-        List<Gate> gates = new ArrayList<>();
-        for(int i=0;i<numberOfEntryGates;i++){
-            Gate gate = new Gate();
-            gate.setGateNumber(i);
-            gate.setGateType(GateType.ENTRY_GATE);
-            gate.set
-        }
-        parkingLot.setCreatedAt(new Date());
-        parkingLot.setUpdatedAt(new Date());
+        parkingLot.setFloor(floorService.floorLinkToParkingLot(parkingLot, numberOfFloors, allowedVehicleType));
+        parkingLot.setGate(gateService.registerGateForParkingLot(parkingLot,numberOfEntryGates,numberOfExitGates));
         parkingLot.setVehicleTypes(allowedVehicleType);
         return parkingLotRepository.saveParkingLotInfo(parkingLot);
     }

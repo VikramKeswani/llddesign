@@ -4,12 +4,11 @@ import models.enums.ParkingSpotStatus;
 import models.enums.VechileType;
 
 public class ParkingSpot extends BaseClass {
-    private int spotNumber;
+    private Long spotNumber;
     VechileType vechileType;
-    Floor floor;
-
+    Long floorId;
     ParkingSpotStatus parkingSpotStatus;
-
+    Long parkingLotId;
 
     public ParkingSpotStatus getParkingSpotStatus() {
         return parkingSpotStatus;
@@ -19,11 +18,11 @@ public class ParkingSpot extends BaseClass {
         this.parkingSpotStatus = parkingSpotStatus;
     }
 
-    public int getSpotNumber() {
+    public Long getSpotNumber() {
         return spotNumber;
     }
 
-    public void setSpotNumber(int spotNumber) {
+    public void setSpotNumber(Long spotNumber) {
         this.spotNumber = spotNumber;
     }
 
@@ -35,11 +34,19 @@ public class ParkingSpot extends BaseClass {
         this.vechileType = vechileType;
     }
 
-    public Floor getFloor() {
-        return floor;
+    public Long getFloorId() {
+        return floorId;
     }
 
-    public void setFloor(Floor floor) {
-        this.floor = floor;
+    public void setFloorId(Long floorId) {
+        this.floorId = floorId;
+    }
+
+    public Long getParkingLotId() {
+        return parkingLotId;
+    }
+
+    public void setParkingLotId(Long parkingLotId) {
+        this.parkingLotId = parkingLotId;
     }
 }
