@@ -12,12 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GateService {
-    CommonUtil commonUtil;
     private GateRepository gateRepository;
 
-    public GateService(GateRepository gateRepository, CommonUtil commonUtil) {
+    public GateService(GateRepository gateRepository) {
         this.gateRepository = gateRepository;
-        this.commonUtil = commonUtil;
     }
 
     public List<Gate> registerGateForParkingLot(ParkingLot parkingLot, int numberOfEntryGates, int numberOfExitGate) {
