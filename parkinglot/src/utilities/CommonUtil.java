@@ -63,4 +63,6 @@ public class CommonUtil {
         return parkingLotNumber+"_"+gateNumber+"_"+gateType.toString();
     }
 
+
+
 }

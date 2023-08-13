@@ -1,6 +1,5 @@
 package service;
 
-import dto.TicketResponseDto;
 import exception.NoGateFoundException;
 import exception.NoParkingLotFoundException;
 import models.*;
@@ -10,8 +9,8 @@ import repositeries.ParkingLotRepository;
 import repositeries.TicketRepository;
 import repositeries.VehicleRepository;
 import models.enums.SpotFindingStrategyType;
-import strategies.SpotAssignmentStrategyFactory;
-import strategies.SpotAssignmentType;
+import strategies.SpotAssignment.SpotAssignmentStrategyFactory;
+import strategies.SpotAssignment.SpotAssignmentType;
 
 import java.util.Date;
 import java.util.Optional;

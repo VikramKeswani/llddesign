@@ -1,4 +1,4 @@
-package strategies;
+package strategies.SpotAssignment;
 
 import models.enums.SpotFindingStrategyType;
 

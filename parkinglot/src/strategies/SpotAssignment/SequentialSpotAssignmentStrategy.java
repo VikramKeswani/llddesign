@@ -1,4 +1,4 @@
-package strategies;
+package strategies.SpotAssignment;
 
 import models.Floor;
 import models.ParkingSpot;
@@ -7,7 +7,7 @@ import models.enums.VechileType;
 
 import java.util.List;
 
-public class SequentialSpotAssignmentStrategy implements SpotAssignmentType{
+public class SequentialSpotAssignmentStrategy implements SpotAssignmentType {
     @Override
     public ParkingSpot getSpot(VechileType vechileType,List<Floor> floors) {
         for(Floor floor:floors){
