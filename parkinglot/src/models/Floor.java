@@ -31,4 +31,13 @@ public class Floor extends BaseClass {
     public void setParkingLot(ParkingLot parkingLot) {
         this.parkingLot = parkingLot;
     }
+
+    @Override
+    public String toString() {
+        return "Floor{" +
+                "floorNumber=" + floorNumber +
+                ", parkingSpotList=" + parkingSpotList +
+                ", parkingLot=" + parkingLot +
+                '}';
+    }
 }

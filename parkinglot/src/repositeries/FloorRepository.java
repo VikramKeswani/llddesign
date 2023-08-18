@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class FloorRepository {
 
-    Map<String, Floor> floorMap;
+    Map<Long, Floor> floorMap;
 
     CommonUtil commonUtil;
 
@@ -19,10 +19,10 @@ public class FloorRepository {
     }
 
     public Floor saveFloorForParkingLot(Floor floor) {
-        String key = commonUtil.generateFloorKey(floor.getParkingLot().getNumber(), floor.getFloorNumber());
+//        String key = commonUtil.generateFloorKey(floor.getParkingLot().getNumber(), floor.getFloorNumber());
         floor.setCreatedAt(new Date());
         floor.setUpdatedAt(new Date());
-        floorMap.put(key, floor);
+        floorMap.put(floor.getFloorNumber(), floor);
         return floor;
     }
 }

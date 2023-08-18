@@ -12,8 +12,10 @@ public class SequentialSpotAssignmentStrategy implements SpotAssignmentType {
     public ParkingSpot getSpot(VechileType vechileType,List<Floor> floors) {
         for(Floor floor:floors){
             for(ParkingSpot parkingSpot:floor.getParkingSpotList()){
-                if(parkingSpot.getVechileType().equals(vechileType) && parkingSpot.getParkingSpotStatus().equals(ParkingSpotStatus.EMPTY))
-                        return parkingSpot;
+                if(parkingSpot.getVechileType().equals(vechileType) && parkingSpot.getParkingSpotStatus().equals(ParkingSpotStatus.EMPTY)){
+                    return parkingSpot;
+                }
+
             }
         }
         return null;

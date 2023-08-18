@@ -16,7 +16,6 @@ import java.util.Date;
 import java.util.Optional;
 
 public class TicketService {
-    Gate gate;
 
     GateRepository gateRepository;
 
@@ -24,7 +23,7 @@ public class TicketService {
     ParkingLotRepository parkingLotRepository;
 
     TicketRepository ticketRepository;
-
+    Ticket ticket;
 
     private static Long ticketNumber;
 
@@ -33,20 +32,21 @@ public class TicketService {
         this.vehicleRepository = vehicleRepository;
         this.parkingLotRepository = parkingLotRepository;
         this.ticketRepository = ticketRepository;
+        ticket= new Ticket();
+        ticketNumber=0L;
     }
 
     public Ticket generateTicket(VechileType vechileType, String vehicleNumber, String vehicleOwnerName, Long gateId) throws NoGateFoundException, NoParkingLotFoundException {
-        Ticket ticket = new Ticket();
         ticketNumber = ticketNumber + 1;
         ticket.setTicketNumber(ticketNumber);
         ticket.setEntryTime(new Date());
         Optional<Gate> gateInfo = gateRepository.getGateInfo(gateId);
-
         if (gateInfo.isEmpty()) {
             throw new NoGateFoundException("No Gate Found For this gateId");
         }
-        ticket.setGate(gate);
-        ticket.setOperator(gate.getOperator());
+        ticket.setGate(gateInfo.get());
+        ticket.setOperator(gateInfo.get().getOperator());
+
         Optional<Vehicle> vehicleInfo = vehicleRepository.getVehicleInfo(vehicleNumber);
         if (vehicleInfo.isPresent()) {
             ticket.setVechile(vehicleInfo.get());
@@ -58,7 +58,7 @@ public class TicketService {
             Vehicle vehicleObject = vehicleRepository.save(vehicle);
             ticket.setVechile(vehicleObject);
         }
-        Optional<ParkingLot> parkingLot = parkingLotRepository.getParkingLotInfoByGateId(gate);
+        Optional<ParkingLot> parkingLot = parkingLotRepository.getParkingLotInfoByGateId(gateInfo.get());
         if (parkingLot.isPresent()) {
             SpotFindingStrategyType spotFindingStrategyType = parkingLot.get().getSpotFindingStrategyType();
             SpotAssignmentType spotAssignmentType = SpotAssignmentStrategyFactory.spotAssignmentStrategy(spotFindingStrategyType);

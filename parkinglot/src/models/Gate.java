@@ -8,7 +8,7 @@ public class Gate extends BaseClass {
     private GateType gateType;
     private Operator operator;
     private FeesCalculationStrategyType feesCalculationStrategyType;
-    private Long parkingLotNumber;
+    private ParkingLot parkingLot;
 
     public Long getGateNumber() {
         return gateNumber;

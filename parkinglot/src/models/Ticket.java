@@ -58,4 +58,16 @@ public class Ticket extends BaseClass {
     public void setParkingSpot(ParkingSpot parkingSpot) {
         this.parkingSpot = parkingSpot;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ticketNumber=" + ticketNumber +
+                ", operator=" + operator +
+                ", gate=" + gate +
+                ", entryTime=" + entryTime +
+                ", vehicle=" + vehicle +
+                ", parkingSpot=" + parkingSpot +
+                '}';
+    }
 }

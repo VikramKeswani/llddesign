@@ -13,7 +13,7 @@ import java.util.Optional;
 public class GateRepository {
 
     CommonUtil commonUtil;
-    Map<String,Gate> gateInfoInMemory;
+    Map<Long,Gate> gateInfoInMemory;
 
     public GateRepository(CommonUtil commonUtil) {
         this.gateInfoInMemory = new HashMap<>();
@@ -21,14 +21,14 @@ public class GateRepository {
     }
 
     public Optional<Gate> getGateInfo(Long gateId){
-        return null;
+        return Optional.of(gateInfoInMemory.get(gateId));
     }
 
     public Gate saveGateInfo(ParkingLot parkingLot, Gate gate, GateType gateType){
-        String gateId = commonUtil.generateGateKey(parkingLot.getNumber(),gate.getGateNumber(),gateType);
+//        String gateId = commonUtil.generateGateKey(parkingLot.getNumber(),gate.getGateNumber(),gateType);
         gate.setCreatedAt(new Date());
         gate.setUpdatedAt(new Date());
-        gateInfoInMemory.put(gateId,gate);
+        gateInfoInMemory.put(gate.getGateNumber(),gate);
         return gate;
     }
 }

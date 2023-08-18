@@ -1,6 +1,7 @@
 package repositeries;
 
 import models.Vehicle;
+import models.enums.VechileType;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -17,6 +18,8 @@ public class VehicleRepository {
     public Vehicle save(Vehicle vehicle) {
         vehicle.setCreatedAt(new Date());
         vehicle.setUpdatedAt(new Date());
+        vehicle.setVechileType(vehicle.getVechileType());
+        vehicle.setVehicleOwnerName(vehicle.getVehicleOwnerName());
         vehicleMap.put(vehicle.getVehicleNumber(), vehicle);
         return vehicle;
     }
